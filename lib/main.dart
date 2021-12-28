@@ -30,7 +30,7 @@ class _NinjaCardState extends State<NinjaCard> {
               ninjaLevel++;
             })
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           backgroundColor: Colors.grey[800],
         ),
         body: Padding(
