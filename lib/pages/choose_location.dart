@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class ChooseLocation extends StatefulWidget {
   ChooseLocation({Key? key}) : super(key: key);
@@ -11,21 +14,18 @@ class _ChooseLocationState extends State<ChooseLocation> {
   int counter = 0;
 
   void getData() async {
-    String username = await Future.delayed(const Duration(seconds: 3), () {
-      return 'yoshi';
-    });
-
-    String bio = await Future.delayed(const Duration(seconds: 2), () {
-      return 'vegan, musician & egg collector';
-    });
-    print('$username = $bio');
+    Uri uri = Uri.parse('https://jsonplaceholder.typicode.com/todos/1');
+    Response response = await get(uri);
+    Map data = jsonDecode(response.body);
+    print(data);
+    print(data['title']);
   }
 
   @override
   void initState() {
+    print('initState');
     super.initState();
     getData();
-    print('initState');
   }
 
   @override
